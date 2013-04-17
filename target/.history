@@ -1,0 +1,14 @@
+compile
+run-main Sentimenter
+run-main Sentimenter.Sentimenter
+run-main sentimenter.Sentimenter
+run-main sentimenter.Sentimenter --help
+compile
+run-main sentimenter.Sentimenter --help
+run-main sentimenter.Sentimenter
+run-main sentimenter.Sentimenter -t data/debate08
+run-main sentimenter.Sentimenter -t data/debate08/train.xml
+compile
+run-main sentimenter.Sentimenter -t data/debate08/train.xml
+compile
+run-main sentimenter.Sentimenter -t data/debate08/train.xml
