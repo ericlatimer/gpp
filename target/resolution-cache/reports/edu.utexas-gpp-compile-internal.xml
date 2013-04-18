@@ -7,7 +7,7 @@
 		revision="0.1"
 		conf="compile-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom"
-		date="20130417112950"/>
+		date="20130418112329"/>
 	<dependencies>
 		<module organisation="org.clapper" name="argot_2.9.1">
 			<revision name="0.3.8" status="release" pubdate="20120313111952" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://software.clapper.org/argot/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="8">
@@ -58,13 +58,13 @@
 			</revision>
 		</module>
 		<module organisation="org.scalanlp" name="nak">
-			<revision name="1.1.2-SNAPSHOT" status="integration" pubdate="20130417005709" resolver="sonatype snapshots" artresolver="sonatype snapshots" homepage="http://scalanlp.org/" downloaded="false" searched="true" default="false" conf="default(compile), default, compile, master(*), compile(*), runtime, runtime(*), master" position="1">
+			<revision name="1.1.2-SNAPSHOT" status="integration" pubdate="20130418012052" resolver="sonatype snapshots" artresolver="sonatype snapshots" homepage="http://scalanlp.org/" downloaded="true" searched="true" default="false" conf="default(compile), default, compile, master(*), compile(*), runtime, runtime(*), master" position="1">
 				<license name="Apache License 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
-				<metadata-artifact status="no" details="" size="3265" time="0" location="/u/elatimer/.ivy2/cache/org.scalanlp/nak/ivy-1.1.2-SNAPSHOT.xml" searched="true" origin-is-local="false" origin-location="https://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/nak/1.1.2-SNAPSHOT/nak-1.1.2-SNAPSHOT.pom"/>
+				<metadata-artifact status="successful" details="" size="2489" time="527" location="/u/elatimer/.ivy2/cache/org.scalanlp/nak/ivy-1.1.2-SNAPSHOT.xml" searched="true" original-local-location="/u/elatimer/.ivy2/cache/org.scalanlp/nak/ivy-1.1.2-SNAPSHOT.xml.original" origin-is-local="false" origin-location="https://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/nak/1.1.2-SNAPSHOT/nak-1.1.2-SNAPSHOT.pom"/>
 				<caller organisation="edu.utexas" name="gpp" conf="optional, compile, provided, compile-internal" rev="1.1.2-SNAPSHOT" rev-constraint-default="1.1.2-SNAPSHOT" rev-constraint-dynamic="1.1.2-SNAPSHOT" callerrev="0.1"/>
 				<caller organisation="org.scalanlp" name="chalk" conf="default, compile, runtime, master" rev="1.1.2-SNAPSHOT" rev-constraint-default="1.1.2-SNAPSHOT" rev-constraint-dynamic="1.1.2-SNAPSHOT" callerrev="1.1.3-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="nak" type="jar" ext="jar" status="no" details="" size="648682" time="0" location="/u/elatimer/.ivy2/cache/org.scalanlp/nak/jars/nak-1.1.2-SNAPSHOT.jar">
+					<artifact name="nak" type="jar" ext="jar" status="successful" details="" size="647643" time="1562" location="/u/elatimer/.ivy2/cache/org.scalanlp/nak/jars/nak-1.1.2-SNAPSHOT.jar">
 						<origin-location is-local="false" location="https://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/nak/1.1.2-SNAPSHOT/nak-1.1.2-SNAPSHOT.jar"/>
 					</artifact>
 				</artifacts>

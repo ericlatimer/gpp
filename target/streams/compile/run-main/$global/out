@@ -1,4 +1,4 @@
-[0m[[0minfo[0m] [0mRunning sentimenter.Sentimenter --train data/debate08/train.xml --eval data/debate08/dev.xml[0m
+[0m[[0minfo[0m] [0mRunning sentimenter.Sentimenter -t data/debate08/train.xml -e data/debate08/dev.xml[0m
 [0m[[0mdebug[0m] [0mStarting sandboxed run...[0m
 [0m[[0mdebug[0m] [0mWaiting for threads to exit or System.exit to be called.[0m
 [0m[[0mdebug[0m] [0m  Classpath:[0m

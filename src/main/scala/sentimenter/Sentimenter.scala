@@ -30,11 +30,11 @@ object SentimenterOpts {
     banner("""
 For usage see below:
 	     """)
-	val cost = opt[String]("cost", short = 'c', descr = "The cost parameter C.")
+	val cost = opt[Double]("cost", short = 'c', default=Some(1.0), descr = "The cost parameter C.")
 	val detailed = opt[Boolean]("detailed", short = 'd', descr = "Should output the correctly and incorrectly results please.")
 	val eval = opt[String]("eval", short = 'e', descr = "The files containing evalualation events.")
 	val extended = opt[Boolean]("extended", short = 'x', descr = "Use extended features.")
-	val method = opt[String]("method", short = 'm', descr = "The type of solver to use. Possible values: majority, lexicon, or any liblinear solver type.")
+	val method = opt[String]("method", short = 'm', default=Some("L2R_LR"), descr = "The type of solver to use. Possible values: majority, lexicon, or any liblinear solver type.")
 	val train = opt[String]("train", short = 't', descr = "The files containing training events.")
 	val verbose = opt[Boolean]("verbose", short = 'v', descr = "Use extended features.")
 	val help = opt[Boolean]("help", noshort = true, descr = "Show this message.")
@@ -61,27 +61,12 @@ object Sentimenter {
   def main(args: Array[String]) {
 	val opts = SentimenterOpts(args)
 
-	//Digest training data
-	val trainXML = scala.xml.XML.loadFile(opts.train())
-	val allTrainingLabels = (trainXML \\ "item").map { item =>
-	  ((item \ "@label").text)
-	}
-	val allTrainingTweets = (trainXML \\ "content").map{x => x.text}
-	val allTrainingPairs = allTrainingLabels.zip(allTrainingTweets)
-
-	//Digest eval data
-	val evalXML = scala.xml.XML.loadFile(opts.eval())
-	val allEvalLabels = (evalXML \\ "item").map { item =>
-	  ((item \ "@label").text)
-	}
-	val allEvalTweets = (evalXML \\ "content").map{x => x.text}
-	val allEvalPairs = allEvalLabels.zip(allEvalTweets)
-
-	val (labels, counts) = allTrainingLabels.groupBy(x => x).map{pair => (pair._1, pair._2.length)}.unzip
-	labels.foreach(println)
-	counts.foreach(println)
-
-	//val confusionMatrix = ConfusionMatrix(labels.toIndexedSeq,labels.toIndexedSeq,counts)
+	if (opts.method() == "majority") {
+		Majority(opts.train(), opts.eval())
+	} else if (opts.method() == "lexicon") {
+		Lexicon(opts.eval())
+	} else
+		Fancy(opts.train(), opts.eval(), opts.cost())
   }
 
 }

@@ -23,6 +23,7 @@ JAVA="$JAVA_HOME/bin/java"
 JAVA_COMMAND="$JAVA -classpath $CP -Dgpp.dir=$GPP_DIR"
 
 CMD=$1
+REST="${*:2}"
 shift
 
 help()
@@ -40,11 +41,13 @@ CLASS=
 
 case $CMD in
     run) CLASS=$1; shift;;
+	exp) CLASS=sentimenter.Sentimenter; shift;;
     help) help; exit 1;;
     *) echo "Unrecognized command: $CMD"; help; exit 1;;
 esac
 
-$JAVA_COMMAND $CLASS ${1+"$@"} 
+echo $REST
+$JAVA_COMMAND $CLASS $REST
 (( EXIT_CODE += $? ))
 
 exit $EXIT_CODE

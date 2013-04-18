@@ -22,7 +22,7 @@ import nak.data._
 import nak.liblinear.{LiblinearConfig,Solver}
 import nak.util.ConfusionMatrix
 /**
- * run-main nak.example.TweetExample /Users/eric/Dropbox/CS395T-ANLP/gpp/data/debate08/train.xml /Users/eric/Dropbox/CS395T-ANLP/gpp/data/debate08/dev.xml
+ * run-main example.TweetExample data/debate08/train.xml data/debate08/dev.xml
  * /Users/eric/Dropbox/CS395T-ANLP/gpp/data/debate08/train.xml
  * /Users/eric/Dropbox/CS395T-ANLP/gpp/data/debate08/dev.xml
  * @author jasonbaldridge
@@ -45,9 +45,17 @@ object TweetExample {
 
     //Digest training data
     val trainXML = scala.xml.XML.loadFile(trainfile)
-    val allTrainingLabels = (trainXML \\ "item").map { item =>
+    val trueTrainingLabels = (trainXML \\ "item").map { item =>
       ((item \ "@label").text)
     }
+    val majorityLabels = trueTrainingLabels.groupBy(x => x).map{pair => (pair._1, pair._2.length)}
+    val flippedMajority = majorityLabels map {_.swap}
+    val majority = flippedMajority.toList.sortBy(-_._1).head._2
+
+    val allTrainingLabels = (trainXML \\ "item").map { item =>
+      majority
+    }
+
     val allTrainingTweets = (trainXML \\ "content").map{x => x.text}
     val allTrainingPairs = allTrainingLabels.zip(allTrainingTweets)
 
@@ -126,44 +134,42 @@ object TweetExample {
     val nativeEvalExamples = readNative(allEvalPairs).toList
     val comparisons = for (ex <- nativeEvalExamples) yield {
       ex.label match {
-                case "negative" => {
-                  val scores = classifier.evalUnindexed(negativeFeaturizer(ex.features))
-                  // Get the *index* of the best score.
-                  val best = scores.zipWithIndex.maxBy(_._1)._2
+        case "negative" => {
+          val scores = classifier.evalUnindexed(negativeFeaturizer(ex.features))
+          // Get the *index* of the best score.
+          val best = scores.zipWithIndex.maxBy(_._1)._2
 
-                  // Output both the true label and the predicted label.
-                  (ex.label, classifier.labelOfIndex(best))
-                  }
-                case "neutral" => {
-                  val scores = classifier.evalUnindexed(neutralFeaturizer(ex.features))
-                  // Get the *index* of the best score.
-                  val best = scores.zipWithIndex.maxBy(_._1)._2
+          // Output both the true label and the predicted label.
+          (ex.label, classifier.labelOfIndex(best))
+          }
+        case "neutral" => {
+          val scores = classifier.evalUnindexed(neutralFeaturizer(ex.features))
+          // Get the *index* of the best score.
+          val best = scores.zipWithIndex.maxBy(_._1)._2
 
-                  // Output both the true label and the predicted label.
-                  (ex.label, classifier.labelOfIndex(best))
-                  }
-                case "positive" => {
-                  val scores = classifier.evalUnindexed(positiveFeaturizer(ex.features))
-                  // Get the *index* of the best score.
-                  val best = scores.zipWithIndex.maxBy(_._1)._2
+          // Output both the true label and the predicted label.
+          (ex.label, classifier.labelOfIndex(best))
+          }
+        case "positive" => {
+          val scores = classifier.evalUnindexed(positiveFeaturizer(ex.features))
+          // Get the *index* of the best score.
+          val best = scores.zipWithIndex.maxBy(_._1)._2
 
-                  // Output both the true label and the predicted label.
-                  (ex.label, classifier.labelOfIndex(best))
-                  }
-                }
+          // Output both the true label and the predicted label.
+          (ex.label, classifier.labelOfIndex(best))
+          }
+        }
     }
 
-    
     // Compute and print out the confusion matrix based on the comparisons 
     // obtained above.
     val (goldLabels, predictions) = comparisons.unzip
     val inputs = nativeEvalExamples.map(_.features)
     val cmatrix = ConfusionMatrix(goldLabels, predictions, inputs)
     println(cmatrix)
-    
   }
-
 }
+
 /**
  * An example of using the API to classify the prepositional phrase attachment
  * data.
