@@ -40,13 +40,13 @@ EOF
 CLASS=
 
 case $CMD in
-    run) CLASS=$1; shift;;
-	exp) CLASS=sentimenter.Sentimenter; shift;;
+    run) CLASS=$1;shift;;
+    exp) CLASS=sentimenter.Sentimenter;shift; ;;
+    convert-stanford) CLASS=sentimenter.ConvertStanford;shift;; 
     help) help; exit 1;;
     *) echo "Unrecognized command: $CMD"; help; exit 1;;
 esac
 
-echo $REST
 $JAVA_COMMAND $CLASS $REST
 (( EXIT_CODE += $? ))
 

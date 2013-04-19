@@ -1,9 +1,14 @@
+package sentimenter
 import scala.io.Source
 
 
-val data = io.Source.fromFile(args(0)).getLines
+object ConvertStanford {
 
-val dataset = <dataset>
+
+	def main(args: Array[String]){
+		val data = io.Source.fromFile(args(0)).getLines
+
+		val dataset = <dataset>
 {for (line <- data)yield { val information = line.split(";;")
 				val polarity = if (information(0) == "0") "negative"
 						else if (information(0) == "2") "neutral"
@@ -14,5 +19,8 @@ val dataset = <dataset>
 }}
 </dataset>
 
-println(dataset)
+		println(dataset)
+	}
+
+}
 
