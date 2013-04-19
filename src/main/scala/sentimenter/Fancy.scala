@@ -90,6 +90,27 @@ object Fancy {
       }
     }
 
+   val featurizerBigrams = new Featurizer[String,String] {
+	def apply(input: String) = {
+	   val tokens = Twokenize(input).toList.sliding(2).toList
+          tokens.map{bigram => FeatureObservation("bigram"+"="+bigram)}
+
+	}
+  }
+  
+  val featurizerBigramsAll = new Featurizer[String,String] {
+	def apply(input: String) = {
+	   val tokens = Twokenize(input).map(_.toLowerCase).filterNot(wordlists.stopwords)
+          val sentiments = tokens.map{token => getPolarity(token)}
+          val tokenSentiments = tokens.zip(sentiments)
+          val firstFeatures = tokenSentiments.map{pair => 
+          	List(FeatureObservation("polarity"+"="+pair._2),FeatureObservation("word"+"="+pair._1))}.flatten 
+	   val bigrams = Twokenize(input).map(_.toLowerCase).toList.sliding(2).toList
+          val secondFeatures = bigrams.map{bigram => FeatureObservation("bigram"+"="+bigram)}
+	   firstFeatures ++ secondFeatures
+	}
+   }
+
     // A featurizer that simply splits the raw inputs, 
     // lowercases each, removes stopwords 
     // and attaches the it to "word" (Bag of Words)
@@ -147,7 +168,7 @@ object Fancy {
     // Logistic Regression classifier with a C value of .5. We accept the default
     // eps and verbosity values.
     val config = new LiblinearConfig(cost=cost)
-    val classifier = trainClassifier(config, if (extended) featurizerall else featurizer, rawExamples)
+    val classifier = trainClassifier(config, if (extended) featurizerBigramsAll else featurizer, rawExamples)
     
     // Partially apply the labels to the curried 2-arg NakContext.maxLabel function 
     // to create the 1-arg maxLabelPpa function to get the best label for each example.
