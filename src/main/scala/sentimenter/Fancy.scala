@@ -78,7 +78,7 @@ object Fancy {
     // Logistic Regression classifier with a C value of .5. We accept the default
     // eps and verbosity values.
     val config = new LiblinearConfig(cost=cost)
-    val classifier = LiblinearTrainer.train(config, featurizer, rawExamples)
+    val classifier = trainClassifier(config, featurizer, rawExamples)
     
     // Partially apply the labels to the curried 2-arg NakContext.maxLabel function 
     // to create the 1-arg maxLabelPpa function to get the best label for each example.

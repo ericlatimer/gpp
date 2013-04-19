@@ -25,3 +25,4 @@ run-main sentimenter.Sentimenter -t data/debate08/train.xml -e data/debate08/eva
 run-main sentimenter.Sentimenter -t data/debate08/train.xml -e data/debate08/dev.xml   
 compile
 ~compile
+compile
