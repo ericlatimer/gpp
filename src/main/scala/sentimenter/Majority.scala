@@ -23,29 +23,27 @@ object Majority {
     val flippedMajority = majorityLabels map {_.swap}
     val majority = flippedMajority.toList.sortBy(-_._1).head._2
 
-    val allTrainingLabels = (trainXML \\ "item").map { item =>
-      majority
-    }
-
     val allTrainingTweets = (trainXML \\ "content").map{x => x.text}
-    val allTrainingPairs = allTrainingLabels.zip(allTrainingTweets)
+    val allTrainingPairs = trueTrainingLabels.zip(allTrainingTweets)
 
+    val filteredTrainingPairs = allTrainingPairs.filter(x=>List("positive","negative","neutral").contains(x._1))
+    val majorityTrainingPairs = filteredTrainingPairs.map(x => (majority,x._2))
+    
     //Digest eval data
     val evalXML = scala.xml.XML.loadFile(evalfile)
     val allEvalLabels = (evalXML \\ "item").map { item =>
       ((item \ "@label").text)
     }
     val allEvalTweets = (evalXML \\ "content").map{x => x.text}
-    val allEvalPairs = allEvalLabels.zip(allEvalTweets)
+    val allEvalPairs = allEvalLabels.zip(allEvalTweets).filter(x=>List("positive","negative","neutral").contains(x._1))
 
     def readNative(traininPairs: Seq[(String,String)]) = 
       for (pair <- traininPairs)
         yield Example(pair._1, pair._2)
 
-    
     // Get the training examples in their native format.  
-    val nativeExamples = readNative(allTrainingPairs).toList
-    println("Native example: " + nativeExamples.head)
+    val nativeExamples = readNative(majorityTrainingPairs).toList
+    //println("Native example: " + nativeExamples.head)
 
     val featurizer = new Featurizer[String,String] {
 	def apply(input: String) = {
@@ -53,27 +51,13 @@ object Majority {
         for ((a,l) <- words zip Stream.continually(majority)) 
           yield FeatureObservation(l+"="+a)
       }
-
-
     }
-
-    
-    
-  
-
-    // Configure and train with liblinear. Here we use the L2-Regularized 
-    // Logistic Regression classifier with a C value of .5. We accept the default
-    // eps and verbosity values.
-    val config = new LiblinearConfig(cost= .5)
-    val classifier = trainClassifier(config,featurizer,nativeExamples)
 
     // Make predictions on the evaluation data. 
     val nativeEvalExamples = readNative(allEvalPairs).toList
-    def maxLabelPpa = maxLabel(classifier.labels) _ 
     val comparisons = for (ex <- nativeEvalExamples) yield {
-               // Output both the true label and the predicted label.
-          (ex.label, maxLabelPpa(classifier.evalRaw(ex.features)),ex.features)
-             
+        // Output both the true label and the predicted label.
+        (ex.label, majority,ex.features)   
     }
 
     // Compute and print out the confusion matrix based on the comparisons 

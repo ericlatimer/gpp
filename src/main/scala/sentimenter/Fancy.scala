@@ -32,7 +32,9 @@ object Fancy {
   import nak.util.ConfusionMatrix
   import chalk.lang.eng.Twokenize
 
-  def apply(trainfile:String,evalfile:String,cost:Double) {
+  val wordlists = new WordLists
+
+  def apply(trainfile:String,evalfile:String,cost:Double,extended:Boolean) {
     //Digest training data
     val trainXML = scala.xml.XML.loadFile(trainfile)
     val allTrainingLabels = (trainXML \\ "item").map { item =>
@@ -40,7 +42,7 @@ object Fancy {
     }
 
     val allTrainingTweets = (trainXML \\ "content").map{x => x.text}
-    val allTrainingPairs = allTrainingLabels.zip(allTrainingTweets)
+    val allTrainingPairs = allTrainingLabels.zip(allTrainingTweets).filter(x=>List("positive","negative","neutral").contains(x._1))
 
     //Digest eval data
     val evalXML = scala.xml.XML.loadFile(evalfile)
@@ -48,7 +50,7 @@ object Fancy {
       ((item \ "@label").text)
     }
     val allEvalTweets = (evalXML \\ "content").map{x => x.text}
-    val allEvalPairs = allEvalLabels.zip(allEvalTweets)
+    val allEvalPairs = allEvalLabels.zip(allEvalTweets).filter(x=>List("positive","negative","neutral").contains(x._1))
 
     // A function (with supporting regex) that reads the format of the PPA 
     // files and turns them into Examples. E.g. a line like:
@@ -61,8 +63,8 @@ object Fancy {
       for (pair <- traininPairs)
         yield Example(pair._1, pair._2)
 
-    // A featurizer that simply splits the raw inputs and attaches the
-    // appropriate attributes to each of the elements.
+    // A featurizer that simply splits the raw inputs 
+    // and attaches the it to "word" (Bag of Words)
     val featurizer = new Featurizer[String,String] {
       def apply(input: String) = {
         val tokens = Twokenize(input)
@@ -70,15 +72,82 @@ object Fancy {
       }
     }
 
+    // A featurizer that simply splits the raw inputs, 
+    // lowercases each and attaches the it to "word" (Bag of Words)
+    val featurizerLowerCase = new Featurizer[String,String] {
+      def apply(input: String) = {
+        val tokens = Twokenize(input).map(_.toLowerCase)
+        tokens.map{word => FeatureObservation("word"+"="+word)} 
+      }
+    }
+
+    // A featurizer that simply splits the raw inputs, 
+    // lowercases each and attaches the it to "word" (Bag of Words)
+    val featurizerStopWords = new Featurizer[String,String] {
+      def apply(input: String) = {
+        val tokens = Twokenize(input).filterNot(wordlists.stopwords)
+        tokens.map{word => FeatureObservation("word"+"="+word)} 
+      }
+    }
+
+    // A featurizer that simply splits the raw inputs, 
+    // lowercases each, removes stopwords 
+    // and attaches the it to "word" (Bag of Words)
+    val featurizerStopWordsAndLC = new Featurizer[String,String] {
+      def apply(input: String) = {
+        val tokens = Twokenize(input).map(_.toLowerCase).filterNot(wordlists.stopwords)
+        tokens.map{word => FeatureObservation("word"+"="+word)} 
+      }
+    }
+
+    // A featurizer that simply splits the raw inputs, 
+    // lowercases each, removes stopwords 
+    // and attaches the it to "word" (Bag of Words)
+    val featurizerall = new Featurizer[String,String] {
+      def apply(input: String) = {
+        val tokens = Twokenize(input).map(_.toLowerCase).filterNot(wordlists.stopwords)
+        val sentiments = tokens.map{token => getPolarity(token)}
+        val tokenSentiments = tokens.zip(sentiments)
+        tokenSentiments.map{pair => 
+          List(FeatureObservation("polarity"+"="+pair._2),FeatureObservation("word"+"="+pair._1))}.flatten 
+      }
+    }
+
+    // A featurizer that simply splits the raw inputs, 
+    // lowercases each, removes stopwords 
+    // and attaches the it to "word" (Bag of Words)
+    val featurizerWordSentiments = new Featurizer[String,String] {
+      def apply(input: String) = {
+        val tokens = Twokenize(input)
+        val sentiments = tokens.map{token => getPolarity(token.toLowerCase)}
+        val tokenSentiments = tokens.zip(sentiments)
+        tokenSentiments.map{pair => 
+          FeatureObservation("polarity"+"="+pair._2)} 
+      }
+    }
+
+    // A featurizer that simply splits the raw inputs, 
+    // lowercases each, removes stopwords 
+    // and attaches the it to "word" (Bag of Words)
+    val featurizerWordSentimentsBOW = new Featurizer[String,String] {
+      def apply(input: String) = {
+        val tokens = Twokenize(input)
+        val sentiments = tokens.map{token => getPolarity(token.toLowerCase)}
+        val tokenSentiments = tokens.zip(sentiments)
+        tokenSentiments.map{pair => 
+          List(FeatureObservation("polarity"+"="+pair._2),FeatureObservation("word"+"="+pair._1))}.flatten 
+      }
+    }
+
     // Get the training examples in their raw format.  
     val rawExamples = readRaw(allTrainingPairs).toList
-    println("rawExamples: " + rawExamples.head)
+    //println("rawExamples: " + rawExamples.head)
     
     // Configure and train with liblinear. Here we use the (default) L2-Regularized 
     // Logistic Regression classifier with a C value of .5. We accept the default
     // eps and verbosity values.
     val config = new LiblinearConfig(cost=cost)
-    val classifier = trainClassifier(config, featurizer, rawExamples)
+    val classifier = trainClassifier(config, if (extended) featurizerall else featurizer, rawExamples)
     
     // Partially apply the labels to the curried 2-arg NakContext.maxLabel function 
     // to create the 1-arg maxLabelPpa function to get the best label for each example.
@@ -93,5 +162,11 @@ object Fancy {
     // obtained above.
     val (goldLabels, predictions, inputs) = comparisons.unzip3
     println(ConfusionMatrix(goldLabels, predictions, inputs))
+  }
+
+    def getPolarity(token: String) = {
+    if (wordlists.posWords.contains(token)) 1 
+        else if (wordlists.negWords.contains(token)) -1
+        else 0
   }
 }

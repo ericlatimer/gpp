@@ -75,8 +75,9 @@ abstract class OtherLexica (code: String) {
 
 }
 
-class Polarity extends OtherLexica("eng") {
+class WordLists extends OtherLexica("eng") {
   lazy val posWords = getLexicon("positive-words.txt.gz").map{_.toLowerCase}
   lazy val negWords = getLexicon("negative-words.txt.gz").map{_.toLowerCase}
+  lazy val stopwords = getLexicon("stopwords.english").map{_.toLowerCase}
 }
 

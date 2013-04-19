@@ -37,12 +37,12 @@ object Lexicon {
     // obtained above.
     val (goldLabels, predictions) = comparisons.unzip
     val inputs = nativeEvalExamples.map(_.features)
-    println("inputs: " + inputs.head)
+    //println("inputs: " + inputs.head)
     val cmatrix = ConfusionMatrix(goldLabels, predictions, inputs)
     println(cmatrix)
   }
 
-  val polarityCheck = new Polarity
+  val polarityCheck = new WordLists
 
   def getPolarity(tweet: String) = {
     val sum = Twokenize(tweet).map{word => 
