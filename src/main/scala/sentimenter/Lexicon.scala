@@ -21,7 +21,7 @@ object Lexicon {
       ((item \ "@label").text)
     }
     val allEvalTweets = (evalXML \\ "content").map{x => x.text}
-    val allEvalPairs = allEvalLabels.zip(allEvalTweets)
+    val allEvalPairs = allEvalLabels.zip(allEvalTweets).filter(x=>List("positive","negative","neutral").contains(x._1))
 
     def readNative(pairs: Seq[(String,String)]) = 
       for (pair <- pairs)
