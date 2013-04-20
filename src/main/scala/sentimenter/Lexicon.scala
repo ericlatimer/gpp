@@ -14,7 +14,7 @@ import chalk.lang.eng.Twokenize
  */
 object Lexicon {
 
-  def apply(evalfile:String) {
+  def apply(evalfile:String,details:Boolean) {
     //Digest eval data
     val evalXML = scala.xml.XML.loadFile(evalfile)
     val allEvalLabels = (evalXML \\ "item").map { item =>
@@ -38,8 +38,10 @@ object Lexicon {
     val (goldLabels, predictions) = comparisons.unzip
     val inputs = nativeEvalExamples.map(_.features)
     //println("inputs: " + inputs.head)
-    val cmatrix = ConfusionMatrix(goldLabels, predictions, inputs)
-    println(cmatrix)
+    val cm = ConfusionMatrix(goldLabels, predictions, inputs)
+    println(cm)
+    if (details)
+      println(cm.detailedOutput)
   }
 
   val polarityCheck = new WordLists

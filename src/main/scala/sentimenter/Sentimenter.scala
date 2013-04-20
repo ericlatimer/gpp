@@ -59,11 +59,11 @@ object Sentimenter {
 					else getSingleFile(opts.eval(),"evalFile.xml")					
 
 	if (opts.method() == "majority") {
-		Majority(trainFile, evalFile)
+		Majority(trainFile, evalFile, opts.detailed())
 	} else if (opts.method() == "lexicon") {
-		Lexicon(evalFile)
+		Lexicon(evalFile, opts.detailed())
 	} else
-		Fancy(trainFile, evalFile, opts.cost(), opts.extended())
+		Fancy(trainFile, evalFile, opts.cost(), opts.extended(), opts.detailed())
   }
 
   def getSingleFile(fileList:List[String],fileName:String) = {

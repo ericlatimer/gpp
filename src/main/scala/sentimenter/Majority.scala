@@ -13,7 +13,7 @@ import nak.util.ConfusionMatrix
  */
 object Majority {
 
-  def apply(trainfile:String,evalfile:String) {
+  def apply(trainfile:String,evalfile:String,details:Boolean) {
     //Digest training data
     val trainXML = scala.xml.XML.loadFile(trainfile)
     val trueTrainingLabels = (trainXML \\ "item").map { item =>
@@ -63,7 +63,9 @@ object Majority {
     // Compute and print out the confusion matrix based on the comparisons 
     // obtained above.
     val (goldLabels, predictions,inputs) = comparisons.unzip3
-    val cmatrix = ConfusionMatrix(goldLabels, predictions, inputs)
-    println(cmatrix)
+    val cm = ConfusionMatrix(goldLabels, predictions, inputs)
+    println(cm)
+    if (details)
+      println(cm.detailedOutput)
   }
 }

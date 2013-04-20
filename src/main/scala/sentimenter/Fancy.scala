@@ -34,7 +34,7 @@ object Fancy {
 
   val wordlists = new WordLists
 
-  def apply(trainfile:String,evalfile:String,cost:Double,extended:Boolean) {
+  def apply(trainfile:String,evalfile:String,cost:Double,extended:Boolean,details:Boolean) {
     //Digest training data
     val trainXML = scala.xml.XML.loadFile(trainfile)
     val allTrainingLabels = (trainXML \\ "item").map { item =>
@@ -181,7 +181,10 @@ object Fancy {
     // Compute and print out the confusion matrix based on the comparisons 
     // obtained above.
     val (goldLabels, predictions, inputs) = comparisons.unzip3
-    println(ConfusionMatrix(goldLabels, predictions, inputs))
+    val cm = ConfusionMatrix(goldLabels, predictions, inputs)
+    println(cm)
+    if (details)
+      println(cm.detailedOutput)
   }
 
     def getPolarity(token: String) = {
