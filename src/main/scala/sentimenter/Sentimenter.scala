@@ -36,9 +36,9 @@ For usage see below:
 	val extended = opt[Boolean]("extended", short = 'x', default=Some(false), descr = "Use extended features.")
 	val method = opt[String]("method", short = 'm', default=Some("L2R_LR"), descr = "The type of solver to use. Possible values: majority, lexicon, or any liblinear solver type.")
 	val train = opt[List[String]]("train", short = 't', descr = "The files containing training events.")
-	val verbose = opt[Boolean]("verbose", short = 'v', descr = "Use extended features.")
+	val verbose = opt[Boolean]("verbose", short = 'v', default=Some(false), descr = "Use extended features.")
 	val help = opt[Boolean]("help", noshort = true, descr = "Show this message.")
-	val version = opt[Boolean]("version", noshort = true, descr = "Show version of this program.")
+	val version = opt[Boolean]("version", noshort = true, default=Some(false), descr = "Show version of this program.")
   }
 }
 
@@ -52,6 +52,14 @@ object Sentimenter {
    */
   def main(args: Array[String]) {
 	val opts = SentimenterOpts(args)
+
+  if (opts.version()) {
+    println("(ELAF) Sentimenter Version 0.0.1")
+    System.exit(0)
+  }
+
+  if (opts.verbose())
+    println("Verbose mode enabled.")
 
 	val trainFile = if (opts.train().length == 1) opts.train().head 
 					else getSingleFile(opts.train(),"trainFile.xml")
