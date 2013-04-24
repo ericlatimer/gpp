@@ -4,7 +4,8 @@ import java.io.File
 
 object ConvertEmoticon {
 
-
+	// Convert the text files in a directory (directory expected as first argument) to the
+	// XML format specified on the homework page 5
 	def main(args: Array[String]){
 		val files = new java.io.File(args(0)).listFiles.filter(_.getName.endsWith(".txt"))
 		val dataset = <dataset>

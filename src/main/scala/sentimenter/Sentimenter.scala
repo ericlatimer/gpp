@@ -48,7 +48,12 @@ For usage see below:
 object Sentimenter {
 
   /**
-   * Main
+   * Main that processes the command line options and 
+   * initiates the selected kind of classification:
+   * Majority -> majority class baseline (Majority.scala)
+   * Lexicon -> lexicon ratio baseline  (Lexicon.scala)
+   * Fancy -> L2R_LR trained, use --extended for extended features (Fancy.scala)
+   * with the indicated training and evaluation files.
    */
   def main(args: Array[String]) {
 	val opts = SentimenterOpts(args)
@@ -74,6 +79,9 @@ object Sentimenter {
 		Fancy(trainFile, evalFile, opts.cost(), opts.extended(), opts.detailed())
   }
 
+
+  // If multiple files are specified for training and/or evaluation data, create a single file in
+  // the appropriate XML format.  
   def getSingleFile(fileList:List[String],fileName:String) = {
   	val out = new java.io.FileWriter(fileName)
   	out.write("<?xml version=\"1.0\"?>\n")

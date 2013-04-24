@@ -7,10 +7,10 @@ import nak.util.ConfusionMatrix
 import chalk.lang.eng.Twokenize
 
 /**
- * run-main example.TweetExample data/debate08/train.xml data/debate08/dev.xml
- * /Users/eric/Dropbox/CS395T-ANLP/gpp/data/debate08/train.xml
- * /Users/eric/Dropbox/CS395T-ANLP/gpp/data/debate08/dev.xml
- * @author jasonbaldridge
+ * 
+ * Implementation of Lexicon ratio baseline 
+ * 
+ * 
  */
 object Lexicon {
 
@@ -46,6 +46,10 @@ object Lexicon {
 
   val polarityCheck = new WordLists
 
+
+  // Input: Sentence/tweet text
+  // Output: overall polarity of text (1 -> positive, -1 -> negative, 0 -> neutral
+  // uses lists of positive and negative words from Project Phase 2
   def getPolarity(tweet: String) = {
     val sum = Twokenize(tweet).map{word => 
       if (polarityCheck.posWords.contains(word.toLowerCase)) 1 

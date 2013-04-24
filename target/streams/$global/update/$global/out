@@ -789,7 +789,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-reflect;2.10.0!scala-reflect.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.clapper#grizzled-scala_2.9.1;1.0.12!grizzled-scala_2.9.1.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] jline#jline;2.6!jline.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 1706ms :: artifacts dl 134ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 1193ms :: artifacts dl 37ms[0m
 [0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 compile produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 runtime produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 test produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-test.xml[0m
@@ -802,5 +802,5 @@
 [0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 sources produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-sources.xml[0m
 [0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 docs produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-docs.xml[0m
 [0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 pom produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-pom.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (1706ms resolve - 134ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (1193ms resolve - 37ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

@@ -4,7 +4,8 @@ import scala.io.Source
 
 object ConvertStanford {
 
-
+	// Convert the command line argument file (Stanford corpus file expected)
+	// to the XML format specified on the Homework 5 page
 	def main(args: Array[String]){
 		val data = io.Source.fromFile(args(0)).getLines
 

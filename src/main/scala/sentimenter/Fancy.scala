@@ -1,27 +1,11 @@
 package sentimenter
 
-/*
- Copyright 2013 Jason Baldridge
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at 
- 
- http://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License. 
-*/
-
 
 /**
- * An example of using the API to classify the prepositional phrase attachment
- * data, trying to be as simple and self-contained as possible.
- *
- * @author jasonbaldridge
+ * Implements the L2R_LR trained classifier 
+ * Outputs the confusion matrix
+ * Default Features: BOW
+ * Uses the "featurizerall" if --extended flag is set
  */
 object Fancy {
 
@@ -64,7 +48,7 @@ object Fancy {
         yield Example(pair._1, pair._2)
 
     // A featurizer that simply splits the raw inputs 
-    // and attaches the it to "word" (Bag of Words)
+    // and attaches each token to "word" (Bag of Words)
     val featurizer = new Featurizer[String,String] {
       def apply(input: String) = {
         val tokens = Twokenize(input)
@@ -73,7 +57,7 @@ object Fancy {
     }
 
     // A featurizer that simply splits the raw inputs, 
-    // lowercases each and attaches the it to "word" (Bag of Words)
+    // lowercases each and attaches each to "word" (Bag of Words)
     val featurizerLowerCase = new Featurizer[String,String] {
       def apply(input: String) = {
         val tokens = Twokenize(input).map(_.toLowerCase)
@@ -82,7 +66,8 @@ object Fancy {
     }
 
     // A featurizer that simply splits the raw inputs, 
-    // lowercases each and attaches the it to "word" (Bag of Words)
+    // filters out any "stop words" and attaches the remaining words
+    // to "word" (Bag of Words)
     val featurizerStopWords = new Featurizer[String,String] {
       def apply(input: String) = {
         val tokens = Twokenize(input).filterNot(wordlists.stopwords)
@@ -90,6 +75,8 @@ object Fancy {
       }
     }
 
+   // A featurizer that extracts all bigrams from the input and
+   // attaches each to "bigram"
    val featurizerBigrams = new Featurizer[String,String] {
   	def apply(input: String) = {
   	   val tokens = Twokenize(input).toList.sliding(2).toList
@@ -97,6 +84,11 @@ object Fancy {
   	}
   }
   
+   // A featurizer that splits/tokenizes the raw inputs, lowercases each,
+   // filters out the stopwords, and attaches each remaining word to "word"
+   // It also determines the polarity of each remaining word and attaches each
+   // of those polarities to "polarity".
+   // This featurizer also adds the features created from the featurizerBigrams (above)
     val featurizerBigramsAll = new Featurizer[String,String] {
       def apply(input: String) = {
          val tokens = Twokenize(input).map(_.toLowerCase).filterNot(wordlists.stopwords)
@@ -112,7 +104,7 @@ object Fancy {
 
     // A featurizer that simply splits the raw inputs, 
     // lowercases each, removes stopwords 
-    // and attaches the it to "word" (Bag of Words)
+    // and attaches the remaing tokens to "word" (Bag of Words)
     val featurizerStopWordsAndLC = new Featurizer[String,String] {
       def apply(input: String) = {
         val tokens = Twokenize(input).map(_.toLowerCase).filterNot(wordlists.stopwords)
@@ -120,9 +112,9 @@ object Fancy {
       }
     }
 
-    // A featurizer that simply splits the raw inputs, 
+    // A featurizer that tokenizes the raw inputs, 
     // lowercases each, removes stopwords 
-    // and attaches the it to "word" (Bag of Words)
+    // and attaches the remaining words to "word" (Bag of Words)
     val featurizerall = new Featurizer[String,String] {
       def apply(input: String) = {
         val tokens = Twokenize(input).map(_.toLowerCase).filterNot(wordlists.stopwords)
@@ -133,9 +125,9 @@ object Fancy {
       }
     }
 
-    // A featurizer that simply splits the raw inputs, 
-    // lowercases each, removes stopwords 
-    // and attaches the it to "word" (Bag of Words)
+    // A featurizer that tokenizes the raw inputs, 
+    // determines the polarity of each, 
+    // and attaches the "polarity" to each of the determined polarities
     val featurizerWordSentiments = new Featurizer[String,String] {
       def apply(input: String) = {
         val tokens = Twokenize(input)
@@ -146,9 +138,9 @@ object Fancy {
       }
     }
 
-    // A featurizer that simply splits the raw inputs, 
-    // lowercases each, removes stopwords 
-    // and attaches the it to "word" (Bag of Words)
+    // A featurizer that tokenizes the raw inputs, 
+    // determines the polarity of each token,
+    // and adds both the bag of words feature and the polarity feature described above
     val featurizerWordSentimentsBOW = new Featurizer[String,String] {
       def apply(input: String) = {
         val tokens = Twokenize(input)
@@ -164,8 +156,7 @@ object Fancy {
     //println("rawExamples: " + rawExamples.head)
     
     // Configure and train with liblinear. Here we use the (default) L2-Regularized 
-    // Logistic Regression classifier with a C value of .5. We accept the default
-    // eps and verbosity values.
+    // Logistic Regression classifier with a C value of .5. 
     val config = new LiblinearConfig(cost=cost)
     val classifier = trainClassifier(config, if (extended) featurizerall else featurizer, rawExamples)
     
@@ -187,6 +178,11 @@ object Fancy {
       println(cm.detailedOutput)
   }
 
+ 
+    // Function to determine the polarity of the passed word
+    // positive (1) if the word is in the positive word list
+    // negative (-1) if the word is in the negative word list
+    // neutral (0) if the word is in neither list 
     def getPolarity(token: String) = {
     if (wordlists.posWords.contains(token)) 1 
         else if (wordlists.negWords.contains(token)) -1

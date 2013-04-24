@@ -7,7 +7,7 @@
 		revision="0.1"
 		conf="test-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom"
-		date="20130423202303"/>
+		date="20130423205122"/>
 	<dependencies>
 		<module organisation="org.clapper" name="argot_2.9.1">
 			<revision name="0.3.8" status="release" pubdate="20120313111952" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://software.clapper.org/argot/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="8">

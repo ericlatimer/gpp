@@ -5,11 +5,13 @@ import nak.core._
 import nak.data._
 import nak.liblinear.{LiblinearConfig,Solver}
 import nak.util.ConfusionMatrix
+
+
 /**
- * run-main example.TweetExample data/debate08/train.xml data/debate08/dev.xml
- * /Users/eric/Dropbox/CS395T-ANLP/gpp/data/debate08/train.xml
- * /Users/eric/Dropbox/CS395T-ANLP/gpp/data/debate08/dev.xml
- * @author jasonbaldridge
+ * 
+ *  Implementation of the Majority class baseline 
+ * 
+ *
  */
 object Majority {
 
@@ -19,6 +21,8 @@ object Majority {
     val trueTrainingLabels = (trainXML \\ "item").map { item =>
       ((item \ "@label").text)
     }
+
+    // Determine the majority label
     val majorityLabels = trueTrainingLabels.groupBy(x => x).map{pair => (pair._1, pair._2.length)}
     val flippedMajority = majorityLabels map {_.swap}
     val majority = flippedMajority.toList.sortBy(-_._1).head._2
