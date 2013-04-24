@@ -59,7 +59,7 @@ object Sentimenter {
 	val opts = SentimenterOpts(args)
 
   if (opts.version()) {
-    println("(ELAF) Sentimenter Version 0.0.1")
+    println("(ELAF) Sentimenter Version 0.1.1")
     System.exit(0)
   }
 
