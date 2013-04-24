@@ -31,7 +31,10 @@ help()
 cat <<EOF
 gpp 0.1 commands: 
 
-  run              run the main method of a given class
+  run              	run the main method of a given class
+  exp		     	run the sentimenter.Sentimenter class for Homework 5
+  convert-stanford 	convert the given Stanford Twitter Sentiment corpus file to XML format
+  convert-emoticon	convert the given directory of emoticon text files to XML format
 
 Include --help with any option for more information
 EOF

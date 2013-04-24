@@ -1,4 +1,4 @@
-[0m[[0minfo[0m] [0mUpdating {file:/v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/}default-3740ed...[0m
+[0m[[0minfo[0m] [0mUpdating {file:/v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/}default-23b70b...[0m
 [0m[[0mdebug[0m] [0m:: resolving dependencies :: edu.utexas#gpp;0.1[0m
 [0m[[0mdebug[0m] [0m	confs: [compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom][0m
 [0m[[0mdebug[0m] [0m	validate = true[0m
@@ -17,23 +17,8 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies edu.utexas#gpp;0.1->org.scalanlp#nak;1.1.2 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.scalanlp#nak;1.1.2 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scalanlp#nak;1.1.2 {compile=[default(compile)]}[0m
-[0m[[0mdebug[0m] [0m		tried /u/elatimer/.ivy2/local/org.scalanlp/nak/1.1.2/ivys/ivy.xml[0m
-[0m[[0mdebug[0m] [0m	local: no ivy file found for org.scalanlp#nak;1.1.2[0m
-[0m[[0mdebug[0m] [0m		tried https://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/nak/1.1.2/nak-1.1.2.pom[0m
-[0m[[0mdebug[0m] [0mCLIENT ERROR: Item not found for request "ResourceStoreRequest{requestPath='/org/scalanlp/nak/1.1.2/nak-1.1.2.pom', requestContext=RequestContext{this={request.address=128.83.130.22, request.remoteOnly=false, request.url=http://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/nak/1.1.2/nak-1.1.2.pom, request.user=anonymous, request.localOnly=false, request.agent=Apache Ivy/2.3.0-rc1, request.asExpired=false, request.appRootUrl=https://oss.sonatype.org/}, parent=null}, pathStack=[/repositories/snapshots/org/scalanlp/nak/1.1.2/nak-1.1.2.pom], processedRepositories=[snapshots], appliedMappings={}}" in repository ""Snapshots" [id=snapshots]"! url=https://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/nak/1.1.2/nak-1.1.2.pom[0m
-[0m[[0mdebug[0m] [0m	sonatype snapshots: no ivy file found for org.scalanlp#nak;1.1.2[0m
-[0m[[0mdebug[0m] [0m		tried https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.pom[0m
-[0m[[0mdebug[0m] [0m	sonatype releases: found md file for org.scalanlp#nak;1.1.2[0m
-[0m[[0mdebug[0m] [0m		=> https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.pom (1.1.2)[0m
-[0m[[0mdebug[0m] [0mdownloading https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.pom ...[0m
-[0m[[0mdebug[0m] [0m	sonatype releases: downloading https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.pom[0m
-[0m[[0mdebug[0m] [0m	sonatype releases: downloading https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.pom.sha1[0m
-[0m[[0mdebug[0m] [0msha1 OK for https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.pom[0m
-[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.scalanlp#nak;1.1.2!nak.pom(pom.original) (355ms)[0m
-[0m[[0mdebug[0m] [0m		tried /u/elatimer/.ivy2/local/org.scalanlp/nak/1.1.2/jars/nak.jar[0m
-[0m[[0mdebug[0m] [0m		tried https://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/nak/1.1.2/nak-1.1.2.jar[0m
-[0m[[0mdebug[0m] [0mCLIENT ERROR: Item not found for request "ResourceStoreRequest{requestPath='/org/scalanlp/nak/1.1.2/nak-1.1.2.jar', requestContext=RequestContext{this={request.address=128.83.130.22, request.remoteOnly=false, request.url=http://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/nak/1.1.2/nak-1.1.2.jar, request.user=anonymous, request.localOnly=false, request.agent=Apache Ivy/2.3.0-rc1, request.asExpired=false, request.appRootUrl=https://oss.sonatype.org/}, parent=null}, pathStack=[/repositories/snapshots/org/scalanlp/nak/1.1.2/nak-1.1.2.jar], processedRepositories=[snapshots], appliedMappings={}}" in repository ""Snapshots" [id=snapshots]"! url=https://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/nak/1.1.2/nak-1.1.2.jar[0m
-[0m[[0mdebug[0m] [0m		tried https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.jar[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scalanlp#nak;1.1.2[0m
+[0m[[0mdebug[0m] [0m	local: revision in cache: org.scalanlp#nak;1.1.2[0m
 [0m[[0mdebug[0m] [0m	found org.scalanlp#nak;1.1.2 in sonatype releases[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies edu.utexas#gpp;0.1->org.scalanlp#nak;1.1.2 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies edu.utexas#gpp;0.1->org.scalanlp#nak;1.1.2 [compile->compile][0m
@@ -44,7 +29,7 @@
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.rogach#scallop_2.10;0.8.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.rogach#scallop_2.10;0.8.1[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: org.rogach#scallop_2.10;0.8.1[0m
-[0m[[0mdebug[0m] [0m	found org.rogach#scallop_2.10;0.8.1 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m	found org.rogach#scallop_2.10;0.8.1 in public[0m
 [0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scalanlp#nak;1.1.2->org.rogach#scallop_2.10;0.8.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: org.scala-lang#scala-library;2.10.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]} => dependency: org.scala-lang#scala-library;2.10.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
@@ -86,7 +71,7 @@
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: commons-logging#commons-logging;1.1.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: commons-logging#commons-logging;1.1.1[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: commons-logging#commons-logging;1.1.1[0m
-[0m[[0mdebug[0m] [0m	found commons-logging#commons-logging;1.1.1 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m	found commons-logging#commons-logging;1.1.1 in public[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scalanlp#nak;1.1.2->commons-logging#commons-logging;1.1.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scalanlp#nak;1.1.2->commons-logging#commons-logging;1.1.1 [compile->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scalanlp#nak;1.1.2->commons-logging#commons-logging;1.1.1 [compile->compile][0m
@@ -95,7 +80,7 @@
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: log4j#log4j;1.2.16 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: log4j#log4j;1.2.16[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: log4j#log4j;1.2.16[0m
-[0m[[0mdebug[0m] [0m	found log4j#log4j;1.2.16 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m	found log4j#log4j;1.2.16 in public[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scalanlp#nak;1.1.2->log4j#log4j;1.2.16 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scalanlp#nak;1.1.2->log4j#log4j;1.2.16 [compile->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scalanlp#nak;1.1.2->log4j#log4j;1.2.16 [compile->compile][0m
@@ -104,7 +89,7 @@
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: gov.nist.math#jama;1.0.2 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: gov.nist.math#jama;1.0.2[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: gov.nist.math#jama;1.0.2[0m
-[0m[[0mdebug[0m] [0m	found gov.nist.math#jama;1.0.2 in public[0m
+[0m[[0mdebug[0m] [0m	found gov.nist.math#jama;1.0.2 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scalanlp#nak;1.1.2->gov.nist.math#jama;1.0.2 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scalanlp#nak;1.1.2->gov.nist.math#jama;1.0.2 [compile->default(compile)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scalanlp#nak;1.1.2->gov.nist.math#jama;1.0.2 [compile->runtime][0m
@@ -128,11 +113,9 @@
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scalanlp#chalk;1.1.3-SNAPSHOT {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0mdon't use cache for org.scalanlp#chalk;1.1.3-SNAPSHOT: changing=true[0m
 [0m[[0mdebug[0m] [0mdon't use cache for org.scalanlp#chalk;1.1.3-SNAPSHOT: changing=true[0m
-[0m[[0mdebug[0m] [0m		tried /u/elatimer/.ivy2/local/org.scalanlp/chalk/1.1.3-SNAPSHOT/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m		tried /u/aflinchb/.ivy2/local/org.scalanlp/chalk/1.1.3-SNAPSHOT/ivys/ivy.xml[0m
 [0m[[0mdebug[0m] [0m	local: no ivy file found for org.scalanlp#chalk;1.1.3-SNAPSHOT[0m
 [0m[[0mdebug[0m] [0mdon't use cache for org.scalanlp#chalk;1.1.3-SNAPSHOT: changing=true[0m
-[0m[[0mdebug[0m] [0mCLIENT ERROR: Item not found for request "ResourceStoreRequest{requestPath='/org/scalanlp/chalk/1.1.3-SNAPSHOT/maven-metadata.xml', requestContext=RequestContext{this={request.address=128.83.130.22, request.remoteOnly=false, request.url=http://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/chalk/1.1.3-SNAPSHOT/maven-metadata.xml, request.user=anonymous, request.localOnly=false, request.agent=Apache Ivy/2.3.0-rc1, request.asExpired=false, request.appRootUrl=https://oss.sonatype.org/}, parent=null}, pathStack=[/repositories/snapshots/org/scalanlp/chalk/1.1.3-SNAPSHOT/maven-metadata.xml], processedRepositories=[snapshots], appliedMappings={}}" in repository ""Snapshots" [id=snapshots]"! url=https://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/chalk/1.1.3-SNAPSHOT/maven-metadata.xml[0m
-[0m[[0mdebug[0m] [0m	maven-metadata not available: https://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/chalk/1.1.3-SNAPSHOT/maven-metadata.xml[0m
 [0m[[0mdebug[0m] [0m		tried https://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/chalk/1.1.3-SNAPSHOT/chalk-1.1.3-SNAPSHOT.pom[0m
 [0m[[0mdebug[0m] [0m	sonatype snapshots: found md file for org.scalanlp#chalk;1.1.3-SNAPSHOT[0m
 [0m[[0mdebug[0m] [0m		=> https://oss.sonatype.org/content/repositories/snapshots/org/scalanlp/chalk/1.1.3-SNAPSHOT/chalk-1.1.3-SNAPSHOT.pom (1.1.3-SNAPSHOT)[0m
@@ -794,14 +777,9 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies for edu.utexas#gpp;0.1 [docs][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'pom'[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies for edu.utexas#gpp;0.1 [pom][0m
-[0m[[0mdebug[0m] [0m	resolved ivy file produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/edu.utexas/gpp/0.1/resolved.xml.xml[0m
+[0m[[0mdebug[0m] [0m	resolved ivy file produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/edu.utexas/gpp/0.1/resolved.xml.xml[0m
 [0m[[0mdebug[0m] [0m:: downloading artifacts ::[0m
-[0m[[0mdebug[0m] [0m		tried https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.jar[0m
-[0m[[0minfo[0m] [0mdownloading https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.jar ...[0m
-[0m[[0mdebug[0m] [0m	sonatype releases: downloading https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.jar[0m
-[0m[[0mdebug[0m] [0m	sonatype releases: downloading https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.jar.sha1[0m
-[0m[[0mdebug[0m] [0msha1 OK for https://oss.sonatype.org/content/repositories/releases/org/scalanlp/nak/1.1.2/nak-1.1.2.jar[0m
-[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.scalanlp#nak;1.1.2!nak.jar (688ms)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scalanlp#nak;1.1.2!nak.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scalanlp#chalk;1.1.3-SNAPSHOT!chalk.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.rogach#scallop_2.10;0.8.1!scallop_2.10.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.clapper#argot_2.9.1;0.3.8!argot_2.9.1.jar[0m
@@ -811,18 +789,18 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-reflect;2.10.0!scala-reflect.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.clapper#grizzled-scala_2.9.1;1.0.12!grizzled-scala_2.9.1.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] jline#jline;2.6!jline.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 1859ms :: artifacts dl 755ms[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 compile produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-compile.xml[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 runtime produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-runtime.xml[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 test produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-test.xml[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 provided produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-provided.xml[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 optional produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-optional.xml[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 compile-internal produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-compile-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 runtime-internal produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-runtime-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 test-internal produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-test-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 plugin produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-plugin.xml[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 sources produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-sources.xml[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 docs produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-docs.xml[0m
-[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 pom produced in /v/filer4b/v20q001/elatimer/Desktop/CS395T/gpp/target/resolution-cache/reports/edu.utexas-gpp-pom.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (1859ms resolve - 755ms download)[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 1706ms :: artifacts dl 134ms[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 compile produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-compile.xml[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 runtime produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-runtime.xml[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 test produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-test.xml[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 provided produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-provided.xml[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 optional produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-optional.xml[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 compile-internal produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 runtime-internal produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 test-internal produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-test-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 plugin produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-plugin.xml[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 sources produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-sources.xml[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 docs produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-docs.xml[0m
+[0m[[0mdebug[0m] [0m	report for edu.utexas#gpp;0.1 pom produced in /v/filer4b/v20q001/aflinchb/HW5ANLP/gpp/target/resolution-cache/reports/edu.utexas-gpp-pom.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (1706ms resolve - 134ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m
